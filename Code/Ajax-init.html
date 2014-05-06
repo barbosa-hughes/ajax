@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+    "http://www.w3.org/TR/html4/strict.dtd"
+    >
+<html lang="en">
+<head>
+    <title>First Ajax</title>
+    
+
+    
+  
+    
+    <script type="text/javascript" language="javascript">
+       function getNum()
+    {
+
+    ajaxObj = new XMLHttpRequest();
+	
+	
+	ajaxObj.open('GET','http://localhost:8888/code/random.php',true);
+	ajaxObj.send();
+	ajaxObj.onreadystatechange = resp;
+	}
+	
+	function resp(){
+		if (ajaxObj.readyState ==4 && ajaxObj.status ==200)
+		{
+			document.getElementById('result').innerHTML = ajaxObj.responseText;	
+		}
+	
+		};
+	
+	
+    </script>
+</head>
+<body style="font-family: courier;">
+
+    <p>var xmlhttp;</p>
+    
+    function getNum()<br>
+    {<br>
+        xmlhttp = new XMLHttpRequest();<br>
+        xmlhttp.onreadystatechange = callback;<br>
+		
+		xmlhttp.open("GET","http://localhost:8888/code/random.php",true);<br>
+		xmlhttp.send();<br>
+        
+    }<br>
+    <br>
+   <br>
+    function callback()<br>
+    {<br>
+        if(xmlhttp.readyState==4 && xmlhttp.status==200)<br>
+        {<br>
+            document.getElementById('result').innerHTML = xmlhttp.responseText;<br>
+        }<br>
+    }<br>
+    <div id="result">
+    </div>
+    <input type="button" value="Get Random Number" onclick="getNum()"/>
+</body>
+</html>

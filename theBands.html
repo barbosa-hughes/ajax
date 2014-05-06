@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+    "http://www.w3.org/TR/html4/strict.dtd"
+    >
+<html lang="en">
+<head>
+    <title>The Bands</title>
+    <script language="javascript" type="text/javascript">
+       /* var xmlhttp;
+        
+        function getBands()
+        {
+            xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = loadData;
+            xmlhttp.open("GET", "bands.php", true);
+            xmlhttp.send();
+        }
+        
+        function loadData()
+        {
+            if(xmlhttp.readyState==4 && xmlhttp.status==200)
+            {
+                var bandXML = xmlhttp.responseXML.documentElement.getElementsByTagName("bands");
+                console.log(bandXML);
+                var output = "<table>";
+                for(i=0; i < bandXML.length; i++)
+                {
+                   
+                    var line = "<tr>";
+                    var bandElement = bandXML[i].getElementsByTagName("band");
+                    var bandName = bandElement[0].firstChild.nodeValue;
+                    var songElement = bandXML[i].getElementsByTagName("song");
+                    var songName = songElement[0].firstChild.nodeValue;
+                    line += "<td>" + bandName + "</td><td>" + songName + "</td>";
+                    line += "</tr>";
+                    output += line;
+                }
+                output += "</table>";
+                document.getElementById("result").innerHTML = output;
+            }
+        }*/
+    </script>
+    
+    
+    <script type="text/javascript" language="javascript">
+   	var ajaxObj;
+	function getValues()
+	{
+		ajaxObj = new XMLHttpRequest();
+		ajaxObj.onreadystatechange = loadValues;
+		ajaxObj.open('GET','bands.php',true);
+		ajaxObj.send();
+	}
+	
+	function loadValues()
+	{
+		if(ajaxObj.readyState == 4 && ajaxObj.status == 200)
+		{
+			var bandsXML = ajaxObj.responseXML.documentElement.getElementsByTagName("bands");
+			var validResponse = '<table id="a-list">';
+			console.log(bandsXML.length);
+			for (i=0; i < bandsXML.length; i++)
+			{
+				var line = "<tr>";
+				var bandElement = bandsXML[i].getElementsByTagName("band");
+				var bandName = bandElement[0].firstChild.nodeValue;
+				var songElement = bandsXML[i].getElementsByTagName("song");
+				var songName = songElement[0].firstChild.nodeValue;
+				line += "<td>"+bandName+"</td><td>"+songName+"</td>";
+				line += "</tr>";
+				validResponse += line;
+				 console.log(i+" of "+bandsXML.length);
+			}
+			
+			validResponse += '</table>';
+			 console.log(validResponse);
+			 document.getElementById("result").innerHTML = validResponse;
+		}	
+	}
+    
+    </script>
+    
+</head>
+<body>
+    <div id="result"></div>
+    <input type="button" value="Get Bands!" onclick="getValues()"/>
+</body>
+</html>
